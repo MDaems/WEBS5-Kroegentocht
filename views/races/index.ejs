@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+<header>
+    <% include ../partials/header %>
+</header>
+<div class="container">
+        <h1>Overzicht</h1>
+    <a href="/races/new" class="btn btn-success pull-right">Nieuwe Race</a>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Kroegen</th>
+                    <th>Spelers</th>
+                    <th>Started</th>
+                </tr>
+            <tr></tr>
+            </thead>
+            <% for(var i=0; i<races.length; i++) { %>
+            <tbody>
+                <td> <%= races[i].name %></td>
+                <td> <%= races[i].countWaypoints() %></td>
+                <td> <%= races[i].countContestants() %></td>
+                <td> <%= races[i].hasStarted %></td>
+                <td>
+                    <a href="/races/<%= races[i].id %>/race/" class="btn btn-info" >Toon</a>
+                    <% if(user.role === 'admin') {%>
+                    <a href="/races/<%= races[i].id %>/edit/" class="btn btn-warning" >Wijzigen</a>
+                    <a href="#" class="btn btn-danger" >Verwijderen</a>
+                    <%}%>
+                </td>
+            </tbody>
+            <% } %>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "name": "Webs5_CloudServices",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "~1.13.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-session": "^1.13.0",
+    "geoip-lite": "^1.1.8",
+    "ipware": "0.0.8",
+    "jade": "~1.11.0",
+    "ejs" : "~0.8.5",
+    "method-override": "^2.3.5",
+    "mongoose": "^4.4.13",
+    "morgan": "^1.6.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "~2.3.0",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.4.5",
+    "supertest": "^0.15.0"
+  }
+}

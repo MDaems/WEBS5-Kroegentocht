@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+<header>
+    <% include ../partials/header %>
+</header>
+<div class="container">
+    <h1>Overzicht</h1>
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th>Naam</th>
+            <th>Rol</th>
+        </tr>
+        <tr></tr>
+        </thead>
+        <% for(var i=0; i< users.length; i++) { %>
+        <tbody>
+        <td> <%= users[i].username %></td>
+        <td> <%= users[i].role %></td>
+        <td>
+            <a href="/users/<%= users[i].id %>/edit/" class="btn btn-warning" >Wijzigen</a>
+            <a href="#" class="btn btn-danger" >Verwijderen</a>
+        </td>
+        </tbody>
+        <% } %>
+    </table>
+
+
+
+    <% if (nextPage != undefined) { %>
+    <a href="/users/<%= nextPage %>" class="btn btn-success pull-right">Volgende</a>
+    <% } %>
+
+    <% if (nextPage > 2 && prevPage != undefined) { %>
+    <a href="/users/<%= prevPage %>" class="btn btn-success pull-right">Vorige</a>
+    <% } %>
+
+</div>
+
+</body>
+</html>

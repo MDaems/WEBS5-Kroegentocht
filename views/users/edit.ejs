@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+<header>
+    <% include ../partials/header %>
+</header>
+<div class="container">
+    <div id="wrapper">
+        <h1>INFO</h1><hr>
+        <p>
+        <form action="update" method="POST">
+
+            <table style="border-collapse: collapse;width: 50%;">
+                <td> <strong>ID:</strong></td>
+                <td> <%= chosenUser.id %></td>
+                <tr></tr>
+                <td><strong>Naam:</strong></td>
+                <td><input name="username" value="<%= chosenUser.username %>"></td>
+                <tr></tr>
+                <td> <strong>Rol:</strong></td>
+                <td> <input name="role" value="<%= chosenUser.role %>"></td>
+                <tr></tr>
+                <td> <strong>Email:</strong></td>
+                <td> <%= chosenUser.getUserEmail() %></td>
+            </table>
+            </br>
+
+            <select id="volume">
+
+                <%
+                var options = [ "user", "admin"];
+                for ( var i = 0; i < options.length; i++ )
+                {
+                    var selected = ( chosenUser.role == options[i] ) ? "selected" : "";
+
+                %><option name="test" value="<%=options[i] %>" <%=selected %>>  <%=options[i] %>  </option><%
+                }
+                %>
+            </select>
+
+            <button class="btn btn-warning">opslaan</button>
+        </form>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

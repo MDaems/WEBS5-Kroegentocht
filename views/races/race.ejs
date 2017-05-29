@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+<header>
+    <% include ../partials/header %>
+</header>
+<div class="container">
+    <div id="wrapper">
+        <h1>INFO</h1><hr>
+        <p>
+            <% if (race.hasStarted == false && user.role === 'admin'){%>
+                <form action="start" method="POST">
+                    <button class="btn btn-success">Start Race</button>
+                </form>
+            <%}else{%>
+                <% if (race.hasStarted == true && hasJoined == false){%>
+                <form action="join" method="POST">
+                    <button class="btn btn-success">meedoen</button>
+                </form>
+                <%}%>
+            <%}%>
+        </p>
+        <p>
+            <strong>Naam:</strong> <%= race.name %> <br>
+            <strong>Gestart:</strong> <%= race.hasStarted %><br>
+            <strong>Datum aangemaakt:</strong> <%= race.created_at %><br>
+            <% if(race.winnerId != undefined) { %>
+            <strong>Winnaar:</strong> <%= winner %><br>
+            <%}%>
+
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+        <h1>Kroegen</h1>
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Naam</th>
+            </tr>
+            <tr></tr>
+            </thead>
+            <% for(var i=0; i < waypoints.length; i++) { %>
+            <tbody>
+                <td> <%= waypoints[i].name %></td>
+            <td>
+                <% if (hasJoined == true && waypoints[i].containsUser(user.id) == false){%>
+                <form action="checkin" method="POST">
+                    <input type="hidden" value="<%= waypoints[i].id %>" name="wayp_id">
+                    <button class="btn btn-success">check in</button>
+                </form>
+                <%}%>
+            </td>
+            </tbody>
+            <% } %>
+        </table>
+        </div>
+        <div class="col-sm-6">
+            <h1>Spelers</h1>
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Naam</th>
+                </tr>
+                </thead>
+                <% for(var i=0; i < users.length; i++) { %>
+                <tbody>
+                    <td><span class="glyphicon glyphicon-user"></span> <%= users[i].username %></td>
+                    <td> <%= race.getUserScore(users[i].id) %></td>
+                </tbody>
+                <% } %>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

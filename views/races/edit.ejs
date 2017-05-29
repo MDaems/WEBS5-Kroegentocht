@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+<header>
+    <% include ../partials/header %>
+</header>
+<div class="container">
+    <div id="wrapper">
+        <h1>INFO</h1><hr>
+        <p>
+        <form action="update" method="POST">
+            <strong>Naam:</strong>  <input name="name" value="<%= race.name %>">
+            <button class="btn btn-warning">opslaan</button>
+        </form>
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+        <h1>Kroegen</h1>
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Naam2</th>
+            </tr>
+            <tr></tr>
+            </thead>
+            <% for(var i=0; i < gPlaces.length; i++) { %>
+            <% if(race.containsWaypoint(gPlaces[i].place_id) == false) {%>
+            <tbody>
+
+                <td><img src="<%= gPlaces[i].icon %>" style="width:10%"/> <%= gPlaces[i].name %> </td>
+                <td>
+                    <form action="add" method="POST">
+                        <input type="hidden" value="<%= gPlaces[i].place_id %>" name="google_place_id">
+                        <button class="btn btn-success">toevoegen</button>
+                    </form>
+                </td>
+            </tbody>
+            <%} } %>
+        </table>
+        </div>
+        <div class="col-sm-6">
+            <h1>Mijn Kroegen</h1>
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Naam</th>
+                    </tr>
+                    <tr></tr>
+                </thead>
+                <% for(var i=0; i < waypoints.length; i++) { %>
+                <tbody>
+                    <td> <%= waypoints[i].name %></td>
+                    <td>
+                        <form action="delete" method="POST">
+                            <input type="hidden" value="<%= waypoints[i].id %>" name="waypoint_id">
+                            <button class="btn btn-danger">verwijderen</button>
+                        </form>
+                    </td>
+                </tbody>
+                <% } %>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
